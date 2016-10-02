@@ -1,12 +1,17 @@
 import Html
 import String
-upper
-    name = String.toUpper name
 
-upperLonger
-    name = if String.length name > 9 then
-        upper name
-        else
-            name
+capitalize maxLength name =
+    if String.length name > maxLength then
+        String.toUpper name
+    else
+        name
 
-main = Html.text (upperLonger "very ldsadsdason")
+main =
+    let
+        name = "super long name"
+    in
+        (capitalize 10 name)
+            ++ ", length of name: "
+            ++ toString (String.length name)
+            |> Html.text
