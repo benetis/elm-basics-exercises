@@ -8,5 +8,5 @@ firstLetter string =
     firstLetter a == firstLetter b
 
 main =
-    toString((~=) "A Test" "Aha")
+    toString("A Test" ~= "Aha")
     |> Html.text
