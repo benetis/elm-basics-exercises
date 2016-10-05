@@ -4,6 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Html.App as App
+import String
 
 
 -- model
@@ -24,6 +25,7 @@ initModel =
 
 type Msg
     = AddCalorie
+    | Input String
     | Clear
 
 
@@ -32,6 +34,14 @@ update msg model =
     case msg of
         AddCalorie ->
             model + 1
+
+        Input val ->
+            case String.toInt val of
+                Ok input ->
+                    input
+
+                Err err ->
+                    model
 
         Clear ->
             initModel
@@ -46,6 +56,17 @@ view model =
     div []
         [ h3 []
             [ text ("Total Calories: " ++ (toString model)) ]
+        , input
+            [ type' "text"
+            , onInput Input
+            , value
+                (if model == 0 then
+                    ""
+                 else
+                    toString model
+                )
+            ]
+            []
         , button
             [ type' "button"
             , onClick AddCalorie
