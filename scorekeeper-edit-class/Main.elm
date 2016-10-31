@@ -248,10 +248,8 @@ playerList model =
     -- ul []
     --     (List.map player model.players)
     model.players
-        |>
-            List.sortBy .name
-        |>
-            List.map (player model.playerId)
+        |> List.sortBy .name
+        |> List.map (player model.playerId)
         -- curry to include playerId for edit mode
         |>
             ul []
